@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人主页 - 推免申请</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+      color: #333;
+      background: #fafafa;
+      scroll-behavior: smooth;
+    }
+    a {
+      text-decoration: none;
+      color: #1a73e8;
+    }
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e8eaed;
+      z-index: 100;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+    }
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a73e8;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      color: #5f6368;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: #1a73e8;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 0 40px;
+      background: linear-gradient(135deg, #e8f0fe 0%, #f3e8ff 100%);
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+    .hero .sub {
+      font-size: 1.05rem;
+      color: #5f6368;
+      margin-bottom: 4px;
+    }
+    .hero .stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin: 20px 0 28px;
+      flex-wrap: wrap;
+    }
+    .hero .stats span {
+      font-size: 0.95rem;
+      color: #444;
+      background: rgba(255,255,255,0.7);
+      padding: 6px 18px;
+      border-radius: 16px;
+    }
+    .hero .btn {
+      display: inline-block;
+      padding: 10px 28px;
+      background: #1a73e8;
+      color: #fff;
+      border-radius: 24px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .hero .btn:hover {
+      background: #1557b0;
+    }
+
+    /* Section */
+    section {
+      padding: 44px 0;
+    }
+    section:nth-child(even) {
+      background: #fff;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      color: #1a1a2e;
+      margin-bottom: 24px;
+      padding-left: 14px;
+      border-left: 3px solid #1a73e8;
+    }
+
+    /* About */
+    .about-text {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.8;
+    }
+    .about-text p {
+      margin-bottom: 10px;
+    }
+    .about-text strong {
+      color: #1a1a2e;
+    }
+
+    /* Research */
+    .research-item {
+      padding: 18px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .research-item:last-child {
+      border-bottom: none;
+    }
+    .research-item h3 {
+      font-size: 1.05rem;
+      color: #1a1a2e;
+      margin-bottom: 4px;
+    }
+    .research-item .meta {
+      font-size: 0.88rem;
+      color: #5f6368;
+      margin-bottom: 8px;
+    }
+    .research-item p {
+      font-size: 0.94rem;
+      color: #444;
+    }
+
+    /* Skills & Awards combined */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .info-block h3 {
+      font-size: 1rem;
+      color: #1a1a2e;
+      margin-bottom: 14px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .tags span {
+      padding: 5px 16px;
+      background: #e8f0fe;
+      color: #1a73e8;
+      border-radius: 14px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .award-list li {
+      padding: 6px 0;
+      font-size: 0.92rem;
+      color: #444;
+      display: flex;
+      gap: 10px;
+    }
+    .award-list .year {
+      color: #5f6368;
+      min-width: 44px;
+    }
+
+    /* Contact */
+    .contact-line {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+    .contact-line span {
+      color: #5f6368;
+    }
+    .contact-line a {
+      color: #1a73e8;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px 0;
+      color: #9aa0a6;
+      font-size: 0.85rem;
+      border-top: 1px solid #e8eaed;
+    }
+
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 2rem; }
+      .hero .stats { gap: 12px; }
+      .info-grid { grid-template-columns: 1fr; gap: 28px; }
+      nav { flex-direction: column; gap: 8px; }
+      .nav-links { gap: 12px; }
+      .contact-line { gap: 16px; flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <span class="logo">个人主页</span>
+        <ul class="nav-links">
+          <li><a href="#about">个人简介</a></li>
+          <li><a href="#research">科研项目</a></li>
+          <li><a href="#info">技能荣誉</a></li>
+          <li><a href="#contact">联系方式</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>姓名</h1>
+      <p class="sub">计算机科学与技术 · 本科四年级</p>
+      <p class="sub">XX大学 计算机学院</p>
+      <div class="stats">
+        <span>GPA: 3.8 / 4.0</span>
+        <span>专业排名: 前 5%</span>
+        <span>CET-6: 560</span>
+      </div>
+      <a href="#contact" class="btn">联系我</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">个人简介</h2>
+      <div class="about-text">
+        <p>
+          本人对人工智能与计算机视觉方向有浓厚的研究兴趣，具备扎实的数学与编程基础。
+          在校期间参与国家级大创项目，从事医学图像分割研究，熟悉深度学习模型的设计与调优。
+          希望能进入贵校继续深造，在科研道路上不断探索。
+        </p>
+        <p>
+          <strong>推免意向：</strong>计算机科学与技术 / 人工智能 方向
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="container">
+      <h2 class="section-title">科研与项目经历</h2>
+
+      <div class="research-item">
+        <h3>基于深度学习的医学图像分割方法研究</h3>
+        <div class="meta">国家级大创项目（负责人） · 2024.03 – 2025.01</div>
+        <p>研究 U-Net 及变体在胃肠道息肉分割中的应用，引入坐标注意力机制改进特征提取，
+        在 Kvasir-SEG 数据集上达到 92.3% mIoU。以第一作者撰写论文一篇（在投）。</p>
+      </div>
+
+      <div class="research-item">
+        <h3>基于 BERT 的中文文本情感分析系统</h3>
+        <div class="meta">实验室项目 · 2024.06 – 2024.09</div>
+        <p>使用预训练语言模型 BERT 进行中文情感五分类，融合对抗训练提升鲁棒性，
+        在微博情感数据集上准确率达 91.7%，并开发了 Web 演示系统。</p>
+      </div>
+
+      <div class="research-item">
+        <h3>智能学习助手 Web 平台</h3>
+        <div class="meta">课程项目 · 2024.09 – 2024.12</div>
+        <p>面向学生的智能学习管理平台，包含知识点图谱与错题推荐功能。
+        前端 React + TypeScript，后端 Spring Boot + MySQL，负责整体架构设计与开发。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="info">
+    <div class="container">
+      <h2 class="section-title">技能与荣誉</h2>
+      <div class="info-grid">
+        <div class="info-block">
+          <h3>专业技能</h3>
+          <div class="tags">
+            <span>Python</span>
+            <span>Java</span>
+            <span>C / C++</span>
+            <span>JavaScript</span>
+            <span>TypeScript</span>
+            <span>PyTorch</span>
+            <span>TensorFlow</span>
+            <span>React</span>
+            <span>Spring Boot</span>
+            <span>MySQL</span>
+            <span>Git</span>
+            <span>Docker</span>
+            <span>Linux</span>
+          </div>
+        </div>
+        <div class="info-block">
+          <h3>荣誉奖项</h3>
+          <ul class="award-list">
+            <li><span class="year">2024</span> 国家奖学金</li>
+            <li><span class="year">2024</span> 数模竞赛省级一等奖</li>
+            <li><span class="year">2023</span> 优秀学生标兵</li>
+            <li><span class="year">2023</span> 校ACM竞赛银奖</li>
+            <li><span class="year">2022</span> 校级一等奖学金</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">联系方式</h2>
+      <div class="contact-line">
+        <span>📧 <a href="mailto:yourname@email.com">yourname@email.com</a></span>
+        <span>📱 138-XXXX-XXXX</span>
+        <span>🐱 <a href="#">github.com/yourname</a></span>
+        <span>📍 北京</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 个人主页 · 推免申请</p>
+    </div>
+  </footer>
+</body>
+</html>
