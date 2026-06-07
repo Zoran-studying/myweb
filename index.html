@@ -268,6 +268,34 @@
       border-top: 1px solid #e8eaed;
     }
 
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 200;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.show {
+      display: flex;
+    }
+    .modal img, .modal embed {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .modal .close {
+      position: absolute;
+      top: 20px; right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
     @media (max-width: 700px) {
       .hero h1 { font-size: 2rem; }
       .hero .stats { gap: 12px; }
@@ -298,19 +326,19 @@
 
   <section class="hero" id="contact">
     <div>
-      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:4px">
-        <img src="photo.jpg" alt="朱礼翔" style="width:90px;height:auto;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.12);margin-top:-20px">
-        <div style="text-align:center;margin-top:12px">
-          <h1 style="margin-bottom:4px">朱礼翔</h1>
-          <p class="sub" style="margin-bottom:0">天津科技大学·尚行学部（教育部学科专业设置调整优化机制改革试点单位）</p>
+<div style="display:flex;flex-direction:column;align-items:center;margin-bottom:16px">
+          <div style="display:flex;align-items:center;justify-content:flex-start;gap:16px;margin-bottom:12px">
+            <img src="photo.jpg" alt="朱礼翔" style="width:80px;height:auto;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.12)">
+            <h1 style="margin:0;font-size:2.4rem">朱礼翔</h1>
+          </div>
+          <p class="sub" style="margin:0 0 0 0;font-size:1rem;color:#5f6368">天津科技大学·尚行学部（教育部学科专业设置调整优化机制改革试点单位）·智能科学与先进制造实验班（人工智能方向）</p>
         </div>
-      </div>
       <div class="stats">
-        <span>政治面貌：中共预备党员</span>
-        <span>GPA: 4.36 / 5.0</span>
-        <span>专业综合排名: 1/57</span>
-        <span>绩点排名: 2/57</span>
-        <span>CET-6: 510</span>
+         <span>政治面貌：中共预备党员</span>
+         <span style="color:#1a73e8;cursor:pointer" onclick="openModal('绩点排名.jpg')">GPA: 4.36 / 5.0</span>
+         <span style="color:#1a73e8;cursor:pointer" onclick="openModal('ranking.jpg')">专业综合排名: 1/57</span>
+         <span style="color:#1a73e8;cursor:pointer" onclick="openModal('绩点排名.jpg')">绩点排名: 2/57</span>
+         <span style="color:#1a73e8;cursor:pointer" onclick="openModal('CET-6.png')">CET-6: 510</span>
       </div>
       <div style="display:flex;justify-content:center;align-items:center;gap:28px;font-size:0.95rem">
         <span style="font-weight:600;color:#1a73e8">联系方式</span>
@@ -348,13 +376,18 @@
       <h2 class="section-title">科研与项目经历</h2>
 
       <div class="research-item">
-        <h3>基于深度学习的全基因组范围 crRNA 设计方法研究</h3>
+        <h3>锐鉴医学-全谱系微生物快检方案 </h3>
         <div class="meta">国家级大创项目（主持人） · 2025.05 – 2026.05</div>
-        <p>使用深度学习模型预测 crRNA 序列，提升基因组编辑实验效率及靶标识别与定量分析能力。
-        提出注意力机制增强的时间卷积网络结合 Transformer 预测荧光值变化，提升模型泛化能力。
-        采用 AIR 模块与 DPDF 双重复合融合策略，准确率达到 97.68%。</p>
+         <h4>内容</h4>
+         <ul style="margin:8px 0 0 20px;padding:0">
+           <li style="margin:4px 0;font-size:0.95rem">使用深度学习模型预测crRNA序列，构建计算机视觉模型实现试剂颜色识别与定量分析。</li>
+         </ul>
+         <h4>负责工作</h4>
+         <ul style="margin:8px 0 0 20px;padding:0">
+           <li style="margin:4px 0;font-size:0.95rem">引入随机突变数据增强和时间折叠技术，解决荧光值波动问题，提升模型泛化能力。</li>
+           <li style="margin:4px 0;font-size:0.95rem">使用AIR模块和DPDF双池化融合策略，将准确率提升到97.68%。</li>
+         </ul>
         <p>
-          <span class="tag tag-blue">发明专利（申请中）</span>
           <span class="tag tag-green">挑战杯 国家级三等奖</span>
         </p>
       </div>
@@ -373,11 +406,16 @@
       <div class="research-item">
         <h3>基于 ROS 的自主巡逻机器人控制系统</h3>
         <div class="meta">课程项目 · 2026.02 – 至今</div>
-        <p>以 ROS Noetic 为核心框架，采用 Gazebo 进行仿真，使用 AMCL 算法实现精确定位，
-        运用 YOLOv8 模型进行视觉状态识别，通过 PyQt5 设计图形用户界面进行中控监视。</p>
-        <p>编写 <code>patrol_navigation.py</code> 节点实现多目标循环巡逻与多机通信；
-        <code>yolo_detection.py</code> 节点完成多路图像加载到 YOLOv8 推理的全流程；
-        <code>qt_monitor.py</code> 图形界面对不同 ROS 话题信息集中收集与实时监控。</p>
+         <h4>内容</h4>
+         <ul style="margin:8px 0 0 20px;padding:0">
+           <li style="margin:4px 0;font-size:0.95rem">以 ROS Noetic 为核心框架，采用 Gazebo 进行仿真，使用 AMCL 算法实现精确定位，运用 YOLOv8 模型进行视觉状态识别，通过 PyQt5 设计图形用户界面进行中控监视。</li>
+         </ul>
+         <h4>负责工作</h4>
+         <ul style="margin:8px 0 0 20px;padding:0">
+           <li style="margin:4px 0;font-size:0.95rem">编写patrol_navigation.py节点，实现多目标点的循环导航逻辑及与检测模块的通信。</li>
+           <li style="margin:4px 0;font-size:0.95rem">开发yolo_detection.py节点，完成从订阅相机图像流到运行YOLOv8模型，并发布结构化检测结果的完整视觉处理管线。</li>
+           <li style="margin:4px 0;font-size:0.95rem">构建qt_monitor.py图形界面，集成来自不同ROS话题的信息，提供直观、实时的监控。</li>
+         </ul>
       </div>
     </div>
   </section>
@@ -396,12 +434,10 @@
             <span>TensorFlow</span>
             <span>OpenCV</span>
             <span>ROS</span>
-            <span>YOLO</span>
             <span>LaTeX</span>
             <span>Endnote</span>
             <span>SolidWorks</span>
             <span>Git</span>
-            <span>Linux</span>
           </div>
         </div>
         <div class="info-block">
@@ -410,8 +446,8 @@
             <li><span class="year">2025</span> 中国大学生工程实践与创新能力大赛 · 国家级一等奖</li>
             <li><span class="year">2025</span> 挑战杯全国大学生课外学术科技作品竞赛 · 国家级三等奖</li>
             <li><span class="year">2025</span> 高教杯全国大学生数学建模竞赛 · 省级一等奖</li>
-            <li><span class="year">2026</span> 蓝桥杯全国软件和信息技术专业人才大赛 · 省级一等奖（冠军）</li>
-            <li><span class="year">2025</span> 中国国际大学生创新大赛 · 省级金奖</li>
+            <li><span class="year">2026</span> 蓝桥杯全国软件和信息技术专业人才大赛 · 省级一等奖（第九名）</li>
+            
             <li><span class="year" style="color:#1a73e8;font-weight:500;">累计</span> 国家级奖项 5 项 · 省部级奖项 10 余项</li>
           </ul>
         </div>
@@ -436,6 +472,20 @@
       </div>
     </div>
   </section>
+
+  <div class="modal" id="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img id="modalImg" src="" alt="证明" onclick="event.stopPropagation()">
+  </div>
+  <script>
+    function openModal(src) {
+      document.getElementById('modalImg').src = src;
+      document.getElementById('modal').classList.add('show');
+    }
+    function closeModal() {
+      document.getElementById('modal').classList.remove('show');
+    }
+  </script>
 
   <footer>
     <div class="container">
