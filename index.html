@@ -72,7 +72,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 100px 0 56px;
+      padding: 70px 0 36px;
       background: linear-gradient(135deg, #e8f0fe 0%, #f3e8ff 100%);
     }
     .hero h1 {
@@ -136,32 +136,11 @@
     }
     .about-text p {
       margin-bottom: 10px;
+      text-indent: 2em;
     }
     .about-text strong {
       color: #1a1a2e;
     }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px 32px;
-      margin-top: 16px;
-      padding: 16px 20px;
-      background: #f5f7fa;
-      border-radius: 10px;
-    }
-    .about-grid .item {
-      display: flex;
-      font-size: 0.95rem;
-    }
-    .about-grid .label {
-      color: #5f6368;
-      min-width: 80px;
-    }
-    .about-grid .value {
-      color: #1a1a2e;
-      font-weight: 500;
-    }
-
     /* Research */
     .research-item {
       padding: 20px 0;
@@ -304,9 +283,9 @@
 <body>
   <header>
     <div class="container">
-      <nav>
+      <nav style="justify-content:center;gap:28px">
         <span class="logo">朱礼翔</span>
-        <ul class="nav-links">
+        <ul class="nav-links" style="display:flex;align-items:center">
            <li><a href="#contact">联系方式</a></li>
            <li><a href="#about">个人简介</a></li>
            <li><a href="#research">科研项目</a></li>
@@ -317,11 +296,17 @@
     </div>
   </header>
 
-  <section class="hero">
+  <section class="hero" id="contact">
     <div>
-      <h1>朱礼翔</h1>
-      <p class="sub">天津科技大学·尚行学部（教育部学科专业设置调整优化机制改革试点单位）</p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:4px">
+        <img src="photo.jpg" alt="朱礼翔" style="width:90px;height:auto;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.12);margin-top:-20px">
+        <div style="text-align:center;margin-top:12px">
+          <h1 style="margin-bottom:4px">朱礼翔</h1>
+          <p class="sub" style="margin-bottom:0">天津科技大学·尚行学部（教育部学科专业设置调整优化机制改革试点单位）</p>
+        </div>
+      </div>
       <div class="stats">
+        <span>政治面貌：中共预备党员</span>
         <span>GPA: 4.36 / 5.0</span>
         <span>专业综合排名: 1/57</span>
         <span>绩点排名: 2/57</span>
@@ -340,31 +325,20 @@
       <h2 class="section-title">个人简介</h2>
       <div class="about-text">
         <p>
-          天津科技大学 2023 级智能科学与先进制造实验班（人工智能方向）本科生。本科阶段系统修读了
+               我是天津科技大学 2023 级智能科学与先进制造实验班（人工智能方向）本科生，在本科阶段我系统修读了
           《自然语言处理》《数字图像处理》《算法设计与分析》等人工智能与计算机学科核心课程，
           构建了扎实的理论基础与知识体系；同时自主学习了吴恩达、李沐、李宏毅等人的机器学习与深度学习系列课程，
           对人工智能领域的前沿方向与核心方法形成了全面且深入的认知。
         </p>
         <p>
-          熟练掌握 Python、C++、Java 等编程语言，能够独立运用 PyTorch、TensorFlow 等主流深度学习框架
+              我熟练掌握 Python、C++、Java 等编程语言，能够独立运用 PyTorch、TensorFlow 等主流深度学习框架
           开展模型开发与实验；可借助 Endnote、LaTeX 等工具完成学术论文的规范撰写，目前已有 1 篇第一作者论文
           处于 CCF-C 类会议投稿阶段。累计获得包括第十九届"挑战杯"全国大学生课外学术科技作品竞赛
           国家级三等奖、中国大学生工程实践与创新能力大赛国家级一等奖在内的国家级奖项 5 项，
           省部级奖项 10 余项，具备扎实的数理基础与工程实践能力。已通过大学英语六级考试，
           具备良好的英文文献阅读与学术写作能力。
         </p>
-        <p>
-          <strong>推免意向：</strong>计算机科学与技术 / 人工智能 方向
-        </p>
-      </div>
-      <div class="about-grid">
-        <div class="item"><span class="label">姓　名</span><span class="value">朱礼翔</span></div>
-        <div class="item"><span class="label">出生年月</span><span class="value">2005 年 8 月</span></div>
-        <div class="item"><span class="label">政治面貌</span><span class="value">中共预备党员</span></div>
-        <div class="item"><span class="label">学　校</span><span class="value">天津科技大学</span></div>
-        <div class="item"><span class="label">学　院</span><span class="value">尚行学部（教育部学科专业设置调整优化机制改革试点单位）</span></div>
-        <div class="item"><span class="label">专　业</span><span class="value">智能科学与先进制造实验班</span></div>
-        <div class="item"><span class="label">方　向</span><span class="value">人工智能</span></div>
+        
       </div>
     </div>
   </section>
